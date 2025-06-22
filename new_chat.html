@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Chat Interface</title>
+</head>
+
+<body class="bg-gray-100">
+    <section class="max-w-4xl mx-auto p-6">
+        <form action="/" method="get">
+            <button type="submit"
+                class="my-4 bg-gradient-to-bl from-green-300 via-blue-500 to-cyan-600 px-6 py-2 rounded-2xl text-sm font-semibold text-white shadow-sm hover:bg-blue-600">
+                Back</button>
+        </form>
+
+        <h1 class="text-4xl font-bold text-center text-blue-800 underline mb-6">Chat Interface</h1>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+
+            <!-- Chat History -->
+            {% if chat_history %}
+            <ul class="space-y-4 mb-6">
+                {% for user, bot in chat_history %}
+                <li class="bg-slate-50 border border-blue-300 p-4 rounded">
+                    <p class="text-sm text-gray-700"><strong class="text-blue-800">You:</strong> {{ user }}</p>
+                    <p class="mt-2 text-sm text-gray-800"><strong class="text-green-700">Bot:</strong> {{ bot|safe }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-center text-gray-500">No chat history yet.</p>
+            {% endif %}
+
+            <!-- Ask a question -->
+            <form action="/chat" method="post" class="flex flex-col sm:flex-row items-center gap-4">
+                <input type="text" name="user_question" id="user_question" required
+                    placeholder="Type your question..."
+                    class="flex-grow w-full sm:w-auto px-4 py-2 rounded-lg border border-gray-300 shadow focus:outline-none focus:border-blue-500">
+                <button type="submit"
+                    class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold shadow hover:opacity-90">
+                    Submit</button>
+            </form>
+
+            <!-- Clear Chat Button -->
+            <form action="/clear_chat" method="post" class="mt-4 text-right">
+                <button type="submit" class="text-red-600 hover:underline text-sm">Clear Chat</button>
+            </form>
+
+        </div>
+    </section>
+</body>
+
+</html>

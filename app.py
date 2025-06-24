@@ -9,7 +9,7 @@ from langchain_community.chat_models import ChatOpenAI
 from langchain_huggingface import HuggingFaceEmbeddings
 
 # === CONFIG ===
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "api_key" # add your api key
 os.environ["OPENAI_API_BASE"] = "https://openrouter.ai/api/v1"
 
 app = Flask(__name__)
